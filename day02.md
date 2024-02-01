@@ -104,10 +104,65 @@ ORDER BY 1;
 
 # 07
 ```
-
+SELECT 
+	pz.name AS pizzeria_name,
+	p.name AS person_name,
+	m.price,
+	pv.visit_date
+FROM
+	person_visits pv
+JOIN person p ON pv.person_id = p.id 
+JOIN person_order po ON po.order_date = pv.visit_date
+JOIN menu m ON po.menu_id = m.id
+JOIN pizzeria pz ON pz.id = pv.pizzeria_id
+WHERE 
+	visit_date = '2022-01-8'
+	AND p.name = 'Dmitriy'
+	AND m.price <= 800;
 ```
 
+![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/d5417e83-f2ea-4a01-bbf2-88df0d3aa563)
 
+# 08
+```
+SELECT p.name FROM person p
+JOIN person_order po ON p.id = po.person_id 
+JOIN menu m ON m.id = po.menu_id
+WHERE (
+		p.address = 'Moscow' OR
+		p.address = 'Samara'
+	) AND (
+		m.pizza_name = 'mushroom pizza' OR
+		m.pizza_name = 'pepperoni pizza'
+	) AND p.gender = 'male'
+ORDER BY 1 DESC;
+```
+
+![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/581fbed1-2a4f-4a14-a351-f92599b68239)
+
+# 09
+```
+SELECT p.name FROM person p
+JOIN person_order po ON p.id = po.person_id 
+JOIN menu m ON m.id = po.menu_id
+WHERE (
+		m.pizza_name = 'cheese pizza' OR
+		m.pizza_name = 'pepperoni pizza'
+	) AND p.gender = 'female'
+ORDER BY 1;
+```
+
+![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/e4981b11-67af-4164-86c8-50e1c2517ed4)
+
+# 10
+```
+SELECT p1.name, p2.name, p1.address FROM person p1
+JOIN person p2 ON p1.address = p2.address
+WHERE p2.name > p1.name
+ORDER BY 1, 2, 3;
+```
+
+![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/d8bd9764-90e4-4cbe-b11e-1648ccf33817)
 
 
 
