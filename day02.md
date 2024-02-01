@@ -2,7 +2,7 @@
 # SQL
 
 # 00
-```
+```sql
 SELECT name, rating FROM pizzeria p
 LEFT JOIN person_visits pv
 	ON p.id = pv.pizzeria_id
@@ -12,7 +12,7 @@ WHERE pv.id IS NULL;
 ![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/cac01c75-1785-4cd3-bf06-50ea25e20655)
 
 # 01
-```
+```sql
 SELECT DISTINCT visit_date FROM person_visits pv
 LEFT JOIN (SELECT missing_date::date 
 		   FROM generate_series(
@@ -31,7 +31,7 @@ WHERE missing_date IS null;
 
 
 # 02
-```
+```sql
 SELECT 
 	COALESCE (p.name, '-'),
 	tab.visit_date,
@@ -48,7 +48,7 @@ ORDER BY 1, 2, 3;
 
 
 # 03
-```
+```sql
 WITH res_set AS(
 	SELECT DISTINCT visit_date FROM person_visits pv
 	LEFT JOIN (SELECT missing_date::date 
@@ -68,7 +68,7 @@ SELECT * FROM res_set;
 ![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/80de5b0e-9ff5-405d-a529-d6f8bb41f0e4)
 
 # 04
-```
+```sql
 SELECT pizza_name, pz.name, price  FROM menu m
 JOIN pizzeria pz ON m.pizzeria_id = pz.id
 WHERE pizza_name = 'mushroom pizza' OR pizza_name = 'pepperoni pizza'
@@ -78,7 +78,7 @@ ORDER BY 1, 2;
 
 
 # 05
-```
+```sql
 SELECT name FROM person
 WHERE age > 25 AND gender = 'female'
 ORDER BY 1;
@@ -87,7 +87,7 @@ ORDER BY 1;
 ![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/e82da91b-20ba-49ba-a0a3-f9c8ea1ce87c)
 
 # 06
-```
+```sql
 WITH tab as(
 	SELECT pizza_name, pz.name as pizzeria_name, p.name FROM menu m
 	JOIN pizzeria pz ON m.pizzeria_id = pz.id
@@ -103,7 +103,7 @@ ORDER BY 1;
 ![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/a0c8950b-8f1c-429c-aa10-6d3f9b5f7f20)
 
 # 07
-```
+```sql
 SELECT 
 	pz.name AS pizzeria_name,
 	p.name AS person_name,
@@ -124,7 +124,7 @@ WHERE
 ![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/d5417e83-f2ea-4a01-bbf2-88df0d3aa563)
 
 # 08
-```
+```sql
 SELECT p.name FROM person p
 JOIN person_order po ON p.id = po.person_id 
 JOIN menu m ON m.id = po.menu_id
@@ -141,7 +141,7 @@ ORDER BY 1 DESC;
 ![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/581fbed1-2a4f-4a14-a351-f92599b68239)
 
 # 09
-```
+```sql
 SELECT p.name FROM person p
 JOIN person_order po ON p.id = po.person_id 
 JOIN menu m ON m.id = po.menu_id
@@ -155,7 +155,7 @@ ORDER BY 1;
 ![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/e4981b11-67af-4164-86c8-50e1c2517ed4)
 
 # 10
-```
+```sql
 SELECT p1.name, p2.name, p1.address FROM person p1
 JOIN person p2 ON p1.address = p2.address
 WHERE p2.name > p1.name
