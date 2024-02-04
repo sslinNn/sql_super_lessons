@@ -50,8 +50,49 @@ ORDER BY 1, 2;
 
 # 03
 ```sql
+WITH res_tab AS (
+    SELECT 
+        pz.name 
+    FROM person_visits pv
+    JOIN person p ON pv.person_id = p.id
+    JOIN pizzeria pz ON pz.id = pv.pizzeria_id
+    WHERE 
+        p.gender = 'female'
+    GROUP BY
+        pz.name
+
+    UNION ALL
+
+    SELECT
+        pz.name
+    FROM person_visits pv
+    JOIN person p ON pv.person_id = p.id
+    JOIN pizzeria pz ON pz.id = pv.pizzeria_id
+    WHERE
+        p.gender = 'male'
+    GROUP BY 
+        pz.name)
+
+SELECT DISTINCT * FROM res_tab
+ORDER BY 1; 
+```
+
+![image](https://github.com/sslinNn/sql_super_lessons/assets/113080924/ddefe0fc-563c-4ed4-9df5-fb7b3b080511)
+
+# 04
+```sql
 
 ```
+
+
+
+
+
+
+
+
+
+
 
 
 
