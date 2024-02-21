@@ -82,8 +82,9 @@ ALTER TABLE person_discounts
 
 # 06
 ```sql
-
+CREATE SEQUENCE seq_person_discounts;
 ```
+
 
 
 
